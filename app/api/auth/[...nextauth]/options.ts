@@ -22,10 +22,15 @@ export const options = {
     GoogleProvider({
       profile(profile) {
         console.log("Profile Google: ", profile);
+
+        let userRole = "Google User";
+        profile.email === "lelongrvp7@gmail.com"
+          ? (userRole = "admin")
+          : (userRole = "user");
         return {
           ...profile,
           id: profile.sub,
-          role: profile.role,
+          role: userRole,
         };
       },
       clientId: process.env.GOOGLE_ID ?? "",
